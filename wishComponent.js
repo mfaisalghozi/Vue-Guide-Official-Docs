@@ -10,6 +10,7 @@ var app = new Vue({
       { id: 0, text: "College Graduate" },
       { id: 1, text: "Invisible Super Power" },
       { id: 2, text: "flying" },
+      { id: 3, text: "swimming" },
     ],
   },
 });
