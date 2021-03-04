@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+</head>
+<body>
+    <div id='app'>
+        <!-- <ol>
+            <todo-item
+                v-for='item in groceryList'
+                v-bind:todo='item'
+                v-bind:key='item.id'
+            ></todo-item>
+        </ol> -->
+        <ul>
+            <wish-list
+                v-for='wish in wishList'
+                v-bind:wish='wish'
+                v-bind:key='wish.id'
+            ></wish-list>
+        </ul>
+        <!-- <h1 v-if='seen'>This is true</h1>
+        <h1 v-else='seen'>This is false</h1>
+
+        <li v-for='todo in todos'>
+            {{todo.text}}
+        </li>
+
+        <h2>{{reverseMessage}}</h2>
+        <button v-on:click="reverseMsg">Reverse Msg</button> -->
+    </div>
+
+    <script>
+    
+
+        // var app = new Vue({
+        //     el: '#app',
+        //     data : {
+        //         message : 'Vue With CDN !',
+        //         seen : true,
+        //         todos : [
+        //             {text: 'learn Vue JS'},
+        //             {text: 'learn VanillaJS'},
+        //             {text: 'keep learning'}
+        //         ],
+        //         reverseMessage: "hey, reverse me !"
+        //     },
+        //     methods: {
+        //         reverseMsg : function (){
+        //             this.reverseMessage = this.reverseMessage.split(' ').reverse().join(' ')
+        //         }
+        //     }
+        // });
+    </script>
+    <!-- <script src="todoComponent.js"></script> -->
+    <script src="wishComponent.js"></script>
+</body>
+</html>
