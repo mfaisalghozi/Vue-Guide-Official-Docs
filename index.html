@@ -7,40 +7,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="https://cdn.jsdelivr.net/npm/vue@2/dist/vue.js"></script>
+    <link rel="stylesheet/less" type="text/css" href="style.less" />
+    <script src="//cdn.jsdelivr.net/npm/less@3.13"></script>
 </head>
 
 <body>
     <div id='app'>
-        <input type="text" v-model="newCat" @keyup.enter="addKitty">
-        <button @click="addKitty">
-            + ADD
-        </button>
+        <h1 style="text-align: center">Time Using App : {{number}}</h1>
+        <section>
+            <div class="cat">
+                <div class="inputArea">
+                    <input type="text" v-model="newCat" @keyup.enter="addKitty">
+                    <button @click="addKitty">
+                        + ADD CAT
+                    </button>
+                </div>
+                <h1>My Current Cat : </h1>
+                <ul>
+                    <li v-for="cat in cats">{{ cat.name }}</li>
+                </ul>
+                <p class="warning" v-if="fullCat">Cat Already Reach Max(5) ! you cant add cat anymore</p>
+            </div>
+            <div class="fish">
+                <div class="inputArea">
+                    <input type="text" v-model="newFish" @keyup.enter="addFish">
+                    <button @click="addFish">
+                        + ADD FISH
+                    </button>
+                </div>
+                <h1>My Current Fish : </h1>
+                <ol>
+                    <li v-for="f in fish">{{ f.name }}</li>
+                </ol>
+                <p class="warning" v-if="fullFish">Fish Already Reach Max(5) ! you cant add cat anymore</p>
+            </div>
+        </section>
 
-        <ul>
-            <li v-for="cat in cats">{{ cat.name }}</li>
-        </ul>
+        <h1 v-if="isError"> Oh no there's an error ~</h1>
 
-        <h1>{{number + 1}}</h1>
-
-        <!-- <ol>
-            <todo-item
-                v-for='item in groceryList'
-                v-bind:todo='item'
-                v-bind:key='item.id'
-            ></todo-item>
-        </ol> -->
-        <!-- <ul>
-            <wish-list v-for='wish in wishList' v-bind:wish='wish' v-bind:key='wish.id'></wish-list>
-        </ul> -->
-        <!-- <h1 v-if='seen'>This is true</h1>
-        <h1 v-else='seen'>This is false</h1>
-
-        <li v-for='todo in todos'>
-            {{todo.text}}
-        </li>
-
-        <h2>{{reverseMessage}}</h2>
-        <button v-on:click="reverseMsg">Reverse Msg</button> -->
     </div>
 
     <script>
@@ -57,18 +61,49 @@
                     {
                         name: 'Fish'
                     }
-                ]
+                ],
+                fish: [{
+                        name: 'Nemo'
+                    },
+                    {
+                        name: 'Dori'
+                    }
+                ],
+                isError: false,
+                fullCat: false,
+                fullFish: false
             },
             methods: {
                 addKitty: function () {
+                    if (this.cats.length >= 5) {
+                        this.fullCat = true
+                        this.newCat = ""
+                        return
+                    }
+
                     this.cats.push({
                         name: this.newCat
                     })
                     this.newCat = ""
                 },
+                addFish: function () {
+                    if (this.fish.length >= 5) {
+                        this.fullFish = true
+                        this.newCat = ""
+                        return
+                    }
+
+                    this.fish.push({
+                        name: this.newFish
+                    })
+                    this.newFish = ""
+                },
                 reverseMsg: function () {
                     this.reverseMessage = this.reverseMessage.split(' ').reverse().join(' ')
                 },
+                addNumber: function () {
+                    this.number++;
+                }
             },
             filters: {
                 capitalize: function (value) {
@@ -76,32 +111,19 @@
                 }
             },
             created: function () {
+                setInterval(this.addNumber, 1000);
                 console.log('Created')
             },
             mounted: function () {
                 console.log('Mounted')
             },
             updated: function () {
+                console.log(this.cats.length)
                 console.log('Updated')
             },
             destroyed: function () {
                 console.log('Destroyed')
             },
-            // data: {
-            //     message: 'Ah Mantap eheh',
-            //     seen: true,
-            //     todos: [{
-            //             text: 'learn Vue JS'
-            //         },
-            //         {
-            //             text: 'learn VanillaJS'
-            //         },
-            //         {
-            //             text: 'keep learning'
-            //         }
-            //     ],
-            //     reverseMessage: "hey, reverse me !"
-            // },
         });
     </script>
     <!-- <script src="todoComponent.js"></script> -->
